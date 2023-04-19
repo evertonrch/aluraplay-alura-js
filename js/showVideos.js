@@ -23,11 +23,10 @@ export default function createCard({ id, titulo, descricao, url, imagem }) {
 const videos = async function () {
   try {
     const data = await listVideos();
-    if (!data) throw new Error(`Json error (${data})`);
-
     data.forEach((video) => lista.appendChild(createCard(video)));
   } catch (error) {
-    console.error(error);
+    const errorMessage = `<h2 class="mensagem__titulo">${error.message}</h2>`
+    lista.innerHTML = errorMessage;
   }
 };
 videos();

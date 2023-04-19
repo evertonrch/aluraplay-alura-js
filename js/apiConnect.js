@@ -1,14 +1,10 @@
-const json = async function () {
-  try {
+const json = async function () { 
     const response = await fetch("http://localhost:3000/videos");
 
     if (!response.ok)
-      throw new Error(`Erro na chaamda da api (${response.status})`);
+      throw new Error(`Erro na chamada da api (${response.status})`);
 
     return await response.json();
-  } catch (error) {
-    console.error(error.message);
-  }
 };
 
 const createVideo = async function (titulo, descricao, url, imagem) {
@@ -24,6 +20,10 @@ const createVideo = async function (titulo, descricao, url, imagem) {
       imagem,
     }),
   });
+
+  if(!response.ok)
+    throw new Error(`Não foi possível enviar o vídeo (${response.status})`)
+
   return response.json();
 };
 

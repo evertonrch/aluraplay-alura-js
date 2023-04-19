@@ -10,8 +10,12 @@ const videoForm = async function (e) {
   const imagem = document.querySelector("[data-img]").value;
   const descricao = "" + Math.trunc(Math.random() * 10) + 1;
 
-  await createVideo(titulo, descricao, url, imagem);
-  window.location.href = "../pages/envio-concluido.html";
+  try {
+    await createVideo(titulo, descricao, url, imagem);
+    window.location.href = "../pages/envio-concluido.html";
+  }catch(error) {
+    alert(error.message);
+  }
 };
 
 form.addEventListener("submit", (e) => videoForm(e));
