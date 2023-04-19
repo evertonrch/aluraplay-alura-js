@@ -1,9 +1,8 @@
-import { getVideos } from "./apiConnect.js";
+import { json as listVideos } from "./apiConnect.js";
 
 const lista = document.querySelector("[data-video]");
 
 const createCard = function ({ id, titulo, descricao, url, imagem }) {
-  console.log(id, titulo, descricao, url, imagem);
   const listItemVideo = document.createElement("li");
   listItemVideo.classList.add("videos__item");
   listItemVideo.innerHTML = `
@@ -23,7 +22,7 @@ const createCard = function ({ id, titulo, descricao, url, imagem }) {
 
 const videos = async function () {
   try {
-    const data = await getVideos.json();
+    const data = await listVideos();
     if (!data) throw new Error(`Json error (${data})`);
 
     data.forEach((video) => lista.appendChild(createCard(video)));

@@ -11,6 +11,20 @@ const json = async function () {
   }
 };
 
-export const getVideos = {
-  json,
+const createVideo = async function (titulo, descricao, url, imagem) {
+  const response = await fetch("http://localhost:3000/videos", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      titulo,
+      descricao: `${descricao} mil visualizações`,
+      url,
+      imagem,
+    }),
+  });
+  return response.json();
 };
+
+export { json, createVideo };
