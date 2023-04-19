@@ -27,4 +27,16 @@ const createVideo = async function (titulo, descricao, url, imagem) {
   return response.json();
 };
 
-export { json, createVideo };
+const searchVideo = async function (queryParam) {
+  try {
+    const response = await fetch(`http://localhost:3000/videos?q=${queryParam}`);
+    if (!response.ok) 
+      throw new Error(`Erro na chamada da api (${response.status} - ${response.statusText})`);
+    
+    return await response.json();
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+export { json, createVideo, searchVideo };
