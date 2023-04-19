@@ -2,7 +2,7 @@ import { json as listVideos } from "./apiConnect.js";
 
 const lista = document.querySelector("[data-video]");
 
-const createCard = function ({ id, titulo, descricao, url, imagem }) {
+export default function createCard({ id, titulo, descricao, url, imagem }) {
   const listItemVideo = document.createElement("li");
   listItemVideo.classList.add("videos__item");
   listItemVideo.innerHTML = `
